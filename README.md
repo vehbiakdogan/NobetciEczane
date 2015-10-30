@@ -39,3 +39,5 @@ echo $eczane->Getir("json"); // Nöbetçi Eczanelerimizi jSon Olarak Çektik
 
 
 ```
+
+<a href="http://blog.vehbiakdogan.com" target="_blank"><h1>Vehbiakdogan.Com</h1></a>
