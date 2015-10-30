@@ -7,25 +7,25 @@ Eczanelere Ait Veriler <a href="http://hastanebul.com.tr" target="_blank">hastan
 
 Öncelikle Php Sınıfımızı Sayfaya Dahil Edelim.
 
-``php
+```php
 require_once("NobetciEczane.class.php");
-``
+```
 Daha Sonra Sınıfımızı Başlatalım. 
-``php
+```php
 
 $eczane = new NobetciEczane("erzurum"); // Hangi İli İstiyorsak Parametre Olarak O ili Verelim
 
-``
+```
 
 Daha Sonra Nöbetçi Eczanelerimizi Çekelim.
 
-``php
+```php
 echo $eczane->Getir("json"); // json,array,text Veri Türünde Verilerimizi Çekebiliriz.
 
-``
+```
 
 Genel Olarak Tam Kodumuz Şöyle. 
-``php
+```php
 
 header("Content-type:application/jSon");
 
@@ -38,4 +38,4 @@ echo $eczane->Getir("json"); // Nöbetçi Eczanelerimizi jSon Olarak Çektik
 
 
 
-``
+```
