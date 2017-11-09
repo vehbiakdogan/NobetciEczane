@@ -4,8 +4,6 @@
 * 	@mail: mf.leqelyy@gmail.com || info@vehbiakdogan.com
 * 	@website: vehbiakdogan.com
 */
-
-
 class NobetciEczane {
 	
 	private $adres = "http://www.hastanebul.com.tr/nobetci-eczaneler";
@@ -15,7 +13,6 @@ class NobetciEczane {
 	private $verilerArray = array(); // göndereceğimiz jSon Veya Dizi Türünde Parametre
 	
 	
-
 	
 	/**
 	* 
@@ -35,16 +32,19 @@ class NobetciEczane {
 	
 	private function parcala(){
 		preg_match_all('#<div class="panel-heading">(.*?)</div>#si',$this->gelenVeri,$basliklar);
-		preg_match_all('#<div class="panel-body">(.*?)</div>#si',$this->gelenVeri,$detaylar);
+		preg_match_all('#<div class="panel-body pharmacyonduty">(.*?)</div>#si',$this->gelenVeri,$detaylar);
 		
 		if(empty($basliklar[0])) die("Geçerli Bir İl Giriniz.");
+
+		$verilerArray[0] = 0;  //id
 		
 		for($i=0;$i<count($basliklar[1]);$i++) {
 			
-			$this->verilerArray[$i]["eczaneAdi"] = strip_tags(trim($basliklar[1][$i])); // başlığı ata 
-			$bol = explode("<br />",$detaylar[1][$i]);
-			$this->verilerArray[$i]["eczaneAdres"] = strip_tags(trim($bol[0]));
-			$this->verilerArray[$i]["eczaneTelefon"] = strip_tags(trim($bol[2]));
+			$this->verilerArray[$i]["eczaneAdi"] = strip_tags(trim($basliklar[1][$i])); // başlığı ata
+			$bol = explode("Telefon:",strip_tags(trim($detaylar[1][$i])));
+			$bol[0]= ltrim($bol[0] , "Adres:");
+			$this->verilerArray[$i]["eczaneSemt"] = $bol[0];
+			$this->verilerArray[$i]["eczaneAdres"] = $bol[1]; 
 		}
 		
 	}
@@ -100,7 +100,6 @@ class NobetciEczane {
  
 	    return $s;
 	}
-
 	
 	
 	
@@ -108,5 +107,4 @@ class NobetciEczane {
 	
 	
 }
-
 ?>
