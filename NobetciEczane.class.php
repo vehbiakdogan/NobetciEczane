@@ -6,8 +6,6 @@
 */
 class NobetciEczane {
 	
-	private $adres = "http://www.hastanebul.com.tr/nobetci-eczaneler";
-	
 	private $sehir; // Girilecek İl
 	private $gelenVeri; // Çektiğimiz Veriler
 	private $verilerArray = array(); // göndereceğimiz jSon Veya Dizi Türünde Parametre
@@ -38,10 +36,10 @@ class NobetciEczane {
 
 		$verilerArray[0] = 0;  //id
 		
-		for($i=0;$i<count($basliklar[1]);$i++) {
+		for($i=2;$i<count($basliklar[1]);$i++) {
 			
 			$this->verilerArray[$i]["eczaneAdi"] = strip_tags(trim($basliklar[1][$i])); // başlığı ata
-			$bol = explode("Telefon:",strip_tags(trim($detaylar[1][$i])));
+			$bol = explode("Telefon:",strip_tags(trim($detaylar[1][$i-2])));
 			$bol[0]= ltrim($bol[0] , "Adres:");
 			$this->verilerArray[$i]["eczaneSemt"] = $bol[0];
 			$this->verilerArray[$i]["eczaneAdres"] = $bol[1]; 
